@@ -2,7 +2,7 @@
 
 Welcome to EduQuest, your go-to platform for online learning!
 
-![EduQuest Logo](images/logo.png)
+![EduQuest Logo](bg.png)
 
 ## Table of Contents
 - [Introduction](#introduction)
