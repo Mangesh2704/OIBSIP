@@ -9,8 +9,6 @@ Welcome to my portfolio website! This repository contains the HTML, CSS, and Jav
 - [Projects](#projects)
 - [Education](#education)
 - [Professional Experience](#professional-experience)
-- [Contact](#contact)
-- [Footer](#footer)
 - [How to Use](#how-to-use)
 - [Contributions](#contributions)
 
@@ -74,19 +72,6 @@ I'm Mangesh Pangam, a passionate and driven Web and Software Developer. I am com
 - Engaged with advanced and innovative technologies.
 - Applied learned skills to solve real-world challenges.
 - Worked in an environment that promoted teamwork and cooperation.
-
-## Contact
-
-Feel free to contact me via email at [202103036.mangeshpkr@student.xavier.ac.in](mailto:202103036.mangeshpkr@student.xavier.ac.in).
-
-Connect with me on social media:
-- [LinkedIn](https://www.linkedin.com/)
-- [Instagram](https://www.instagram.com/)
-- [GitHub](https://github.com/)
-
-## Footer
-
-&copy; 2023 Mangesh Pangam. All rights reserved.
 
 ## How to Use
 
