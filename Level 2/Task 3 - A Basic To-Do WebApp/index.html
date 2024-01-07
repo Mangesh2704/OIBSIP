@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Web App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            overflow: hidden;
+        }   
+
+        .to-do-app-container {
+            background-color: rgba(255, 255, 255, 0.75); 
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+            max-width: 850px; 
+            margin: 0 auto;
+            max-height: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+        }   
+
+        .container-fluid {
+            height: 100%;
+        }
+
+        .card {
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .card-header {
+            font-weight: bold;
+        }
+
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-group-item-success {
+            background-color: #d4edda;
+            color: #155724;
+            text-decoration: line-through;
+        }
+    </style>
+
+        <div class="container-fluid to-do-app-container">
+            <h1 class="text-center mb-4 font-weight-bold">To-Do List Web App</h1>
+
+
+        <form id="taskForm">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="taskInput" placeholder="Add a new task" required>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Add Task</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">Pending Tasks</div>
+                    <ul class="list-group list-group-flush" id="pendingTasks"></ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header bg-success text-white">Completed Tasks</div>
+                    <ul class="list-group list-group-flush" id="completedTasks"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        document.getElementById('taskForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const taskInput = document.getElementById('taskInput').value;
+
+            if (taskInput.trim() !== '') {
+                const taskItem = createTaskItem(taskInput);
+                document.getElementById('pendingTasks').appendChild(taskItem);
+                document.getElementById('taskInput').value = '';
+            }
+        });
+
+        function createTaskItem(task) {
+            const listItem = document.createElement('li');
+            listItem.className = 'list-group-item';
+            listItem.innerHTML = `
+                ${task}
+                <div>
+                    <button class="btn btn-success btn-sm mr-2" onclick="completeTask(this)">Complete</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteTask(this)">Delete</button>
+                </div>
+            `;
+            return listItem;
+        }
+
+        function completeTask(button) {
+            const listItem = button.closest('li');
+            listItem.classList.remove('list-group-item-primary');
+            listItem.classList.add('list-group-item-success');
+            document.getElementById('completedTasks').appendChild(listItem);
+        }
+
+        function deleteTask(button) {
+            const listItem = button.closest('li');
+            listItem.remove();
+        }
+    </script>
+
+</body>
+</html>
+
+
+
