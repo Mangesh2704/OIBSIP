@@ -1,8 +1,10 @@
 # Calculator Web App
 
-![Calculator App](./bg.png)
-
 A simple calculator web application built using HTML, CSS, and JavaScript.
+
+## Preview
+
+![Calculator App](./bg.png)
 
 ## Features
 
