@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        body {
+            background-color:skyblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 8px;
+            padding: 10px;
+        }
+
+        .display {
+            grid-column: span 5;
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 24px;
+            text-align: right;
+        }
+
+        .btn {
+            font-size: 18px;
+            padding: 15px;
+            width: 100%;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .btn-clear {
+            grid-column: span 1;
+        }
+        
+        .btn-enter {
+            grid-column: span 2;
+            background-color: green;
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: #e9ecef;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background-color: #ffca2c;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            color: #ffffff;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator p-4">
+    <div class="display" id="display">0</div>
+
+    <button class="btn btn-info" onclick="appendCharacter('(')">(</button>
+    <button class="btn btn-info" onclick="appendCharacter(')')">)</button>
+    <button class="btn btn-info" onclick="answer()">ans</button>
+    <button class="btn btn-info" onclick="removeLastCharacter()">del</button>
+    <button class="btn btn-info btn-clear" onclick="clearDisplay()">clear</button>
+
+    <button class="btn" onclick="appendNumber('7')">7</button>
+    <button class="btn" onclick="appendNumber('8')">8</button>
+    <button class="btn" onclick="appendNumber('9')">9</button>
+    <button class="btn btn-warning" onclick="setOperator('%')">%</button>
+    <button class="btn btn-warning" onclick="setOperator('√')">√</button>
+
+    <button class="btn" onclick="appendNumber('4')">4</button>
+    <button class="btn" onclick="appendNumber('5')">5</button>
+    <button class="btn" onclick="appendNumber('6')">6</button>
+    <button class="btn btn-warning" onclick="setOperator('*')">×</button>
+    <button class="btn btn-warning" onclick="setOperator('÷')">÷</button>
+
+    <button class="btn" onclick="appendNumber('1')">1</button>
+    <button class="btn" onclick="appendNumber('2')">2</button>
+    <button class="btn" onclick="appendNumber('3')">3</button>
+    <button class="btn btn-warning" onclick="setOperator('+')">+</button>
+    <button class="btn btn-warning" onclick="setOperator('-')">-</button>
+
+    <button class="btn" onclick="appendDecimal('.')">.</button>
+    <button class="btn" onclick="appendNumber('0')">0</button>
+    <button class="btn" onclick="toggleSign()">±</button>
+    <button class="btn btn-enter btn-enter" onclick="calculateResult()">ENTER</button>
+</div>
+
+<script>
+    let display = document.getElementById('display');
+    let currentInput = '';
+
+    function appendCharacter(character) {
+        currentInput += character;
+        updateDisplay();
+    }
+
+    function appendNumber(number) {
+        currentInput += number;
+        updateDisplay();
+    }
+
+    function appendDecimal() {
+        if (!currentInput.includes('.')) {
+            currentInput += '.';
+            updateDisplay();
+        }
+    }
+
+    function setOperator(operator) {
+        if (operator === '√') {
+            currentInput += 'Math.sqrt(';
+        } else {
+            currentInput += ` ${operator} `;
+        }
+        updateDisplay();
+    }
+
+    function calculateResult() {
+        try {
+            currentInput = eval(currentInput).toString();
+            updateDisplay();
+        } catch (error) {
+            currentInput = 'Error';
+            updateDisplay();
+        }
+    }
+
+    function answer() {
+    }
+
+    function clearDisplay() {
+        currentInput = '';
+        updateDisplay();
+    }
+
+    function removeLastCharacter() {
+        currentInput = currentInput.slice(0, -1);
+        updateDisplay();
+    }
+
+    function toggleSign() {
+        currentInput = currentInput.includes('-') ? currentInput.slice(1) : `-${currentInput}`;
+        updateDisplay();
+    }
+
+    function updateDisplay() {
+        display.textContent = currentInput || '0';
+    }
+</script>
+
+</body>
+</html>
